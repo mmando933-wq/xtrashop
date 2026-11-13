@@ -1,9 +1,15 @@
-# my_shop/urls.py
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('shop.urls')),  # <-- Menghubungkan halaman utama ke aplikasi shop
+    path('', include('shop.urls')),  # Menghubungkan URL aplikasi shop utama Anda
 ]
 
+# Konfigurasi untuk menyajikan file statis dengan benar
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+else:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
