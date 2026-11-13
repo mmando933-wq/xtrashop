@@ -1,11 +1,13 @@
 import os
+import sys
 import django
-from django.contrib.auth.models import User
 
+# Atur environment settings module terlebih dahulu sebelum import model Django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'my_shop.settings')
 django.setup()
 
-# Membuat akun admin baru secara paksa/reset password jika sudah ada
+from django.contrib.auth.models import User
+
 username = 'admin'
 email = 'admin@example.com'
 password = 'admin12345'
