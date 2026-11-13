@@ -5,9 +5,9 @@ from django.contrib.auth.models import User
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'my_shop.settings')
 django.setup()
 
-username = os.environ.get('DJANGO_SUPERUSER_USERNAME', 'admin')
-email = os.environ.get('DJANGO_SUPERUSER_EMAIL', 'admin@example.com')
-password = os.environ.get('DJANGO_SUPERUSER_PASSWORD', 'admin12345')
+username = os.environ.get('DJANGO_SUPERUSER_USERNAME', 'mando')
+email = os.environ.get('DJANGO_SUPERUSER_EMAIL', 'mmando933@gmail.com')
+password = os.environ.get('DJANGO_SUPERUSER_PASSWORD', 'Jogja2021')
 
 if not User.objects.filter(username=username).exists():
     User.objects.create_superuser(username=username, email=email, password=password)
