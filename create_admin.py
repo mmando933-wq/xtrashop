@@ -5,12 +5,18 @@ from django.contrib.auth.models import User
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'my_shop.settings')
 django.setup()
 
-username = os.environ.get('DJANGO_SUPERUSER_USERNAME', 'mando')
-email = os.environ.get('DJANGO_SUPERUSER_EMAIL', 'mmando933@gmail.com')
-password = os.environ.get('DJANGO_SUPERUSER_PASSWORD', 'jogja2021')
+# Membuat akun admin baru secara paksa/reset password jika sudah ada
+username = 'admin'
+email = 'admin@example.com'
+password = 'admin12345'
 
-if not User.objects.filter(username=username).exists():
-    User.objects.create_superuser(username=username, email=email, password=password)
-    print(f"Superuser '{username}' berhasil dibuat secara otomatis!")
+if User.objects.filter(username=username).exists():
+    user = User.objects.get(username=username)
+    user.set_password(password)
+    user.is_superuser = True
+    user.is_staff = True
+    user.save()
+    print(f"Password untuk '{username}' berhasil diperbarui!")
 else:
-    print(f"Superuser '{username}' sudah ada.")
+    User.objects.create_superuser(username=username, email=email, password=password)
+    print(f"Superuser '{username}' berhasil dibuat!")
