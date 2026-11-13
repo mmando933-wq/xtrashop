@@ -1,0 +1,36 @@
+{% extends 'shop/base.html' %}
+{% block content %}
+<h2 class="text-2xl font-bold mb-6">Keranjang Belanja Anda</h2>
+{% if cart_items %}
+<div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+    <table class="w-full text-left border-collapse">
+        <thead>
+            <tr class="bg-gray-50 border-b border-gray-100 text-gray-500 text-sm">
+                <th class="p-4">Produk</th>
+                <th class="p-4">Jumlah</th>
+                <th class="p-4">Subtotal</th>
+                <th class="p-4">Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart_items %}
+            <tr class="border-b border-gray-100">
+                <td class="p-4 font-semibold">{{ item.product.name }}</td>
+                <td class="p-4">{{ item.quantity }}</td>
+                <td class="p-4 text-emerald-600 font-bold">Rp {{ item.subtotal }}</td>
+                <td class="p-4">
+                    <a href="{% url 'remove_from_cart' item.product.id %}" class="text-red-500 hover:underline text-sm font-medium">Hapus</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="p-6 flex justify-between items-center bg-gray-50">
+        <span class="text-xl font-bold">Total: Rp {{ total_price }}</span>
+        <a href="{% url 'checkout' %}" class="bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-700">Lanjut ke Checkout ➔</a>
+    </div>
+</div>
+{% else %}
+<p class="text-gray-500">Keranjang belanja Anda masih kosong. <a href="{% url 'product_list' %}" class="text-indigo-600 underline">Belanja sekarang</a></p>
+{% endif %}
+{% endblock %}
