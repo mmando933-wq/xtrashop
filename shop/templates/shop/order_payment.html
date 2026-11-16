@@ -1,0 +1,30 @@
+{% extends 'shop/base.html' %}
+{% block content %}
+<div class="max-w-xl mx-auto bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+    <div class="text-center mb-6">
+        <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl font-bold">✓</div>
+        <h2 class="text-2xl font-bold">Pesanan Berhasil Dibuat!</h2>
+        <p class="text-gray-500 text-sm mt-1">Nomor Pesanan: <strong class="text-indigo-600">#ORD-{{ order.id }}</strong></p>
+    </div>
+
+    <div class="bg-gray-50 p-4 rounded-xl border border-gray-100 mb-6">
+        <h4 class="font-bold text-gray-700 mb-2 text-sm uppercase tracking-wider">Silakan Lakukan Transfer Ke:</h4>
+        <div class="space-y-2 text-sm text-gray-600">
+            <p><strong>Bank BCA:</strong> 8330359278 (a.n. Hermando)</p>
+            <div class="border-t border-gray-200 pt-2 mt-2 flex justify-between items-center">
+                <span class="font-medium">Total Tagihan:</span>
+                <span class="text-emerald-600 font-bold text-lg">Rp {{ order.total_price }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="space-y-3">
+        <a href="https://wa.me/628330359278?text=Halo,%20saya%20ingin%20konfirmasi%20pembayaran%20untuk%20Pesanan%20%23ORD-{{ order.id }}%20sebesar%20Rp%20{{ order.total_price }}" target="_blank" class="block text-center w-full bg-emerald-600 text-white font-semibold py-3 px-6 rounded-xl hover:bg-emerald-700 transition-colors">
+            💬 Konfirmasi Pembayaran via WhatsApp
+        </a>
+        <a href="{% url 'order_history' %}" class="block text-center w-full bg-gray-100 text-gray-600 font-medium py-2.5 px-6 rounded-xl hover:bg-gray-200 transition-colors">
+            Lihat Riwayat Pesanan
+        </a>
+    </div>
+</div>
+{% endblock %}

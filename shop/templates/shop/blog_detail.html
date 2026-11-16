@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.title }} — Xtrashop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased">
+
+    <!-- NAVBAR -->
+    <header class="bg-white/90 backdrop-blur-md border-b border-gray-100 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="{% url 'shop:home' %}" class="text-2xl font-black tracking-tight text-amber-600">Xtra<span class="text-gray-900">shop</span></a>
+            <nav class="flex space-x-8 text-sm font-semibold text-gray-600">
+                <a href="{% url 'shop:home' %}" class="hover:text-amber-600 transition-colors">Beranda</a>
+                <a href="{% url 'shop:blog_list' %}" class="hover:text-amber-600 transition-colors">Blog</a>
+                <a href="{% url 'shop:disclosure' %}" class="hover:text-amber-600 transition-colors">Disclosure</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- KONTEN UTAMA DETAIL -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <article class="bg-white rounded-3xl border border-gray-100 p-8 sm:p-12 shadow-2xl shadow-gray-100 space-y-8">
+            
+            <!-- Foto / Gambar Produk -->
+            {% if post.image_url %}
+            <div class="flex justify-center bg-gradient-to-br from-gray-50 to-gray-100 p-8 rounded-2xl border border-gray-100 shadow-inner">
+                <img src="{{ post.image_url }}" alt="{{ post.title }}" class="max-h-80 object-contain rounded-xl shadow-md">
+            </div>
+            {% endif %}
+
+            <!-- Kategori & Tanggal -->
+            <div class="flex items-center justify-between text-xs sm:text-sm">
+                <span class="bg-amber-500/10 text-amber-600 font-bold uppercase tracking-wider px-4 py-1.5 rounded-full border border-amber-500/20">
+                    {{ post.category_name }}
+                </span>
+                <span class="text-gray-400 font-medium">{{ post.created_at|date:"d M Y" }}</span>
+            </div>
+
+            <!-- Judul Artikel -->
+            <h1 class="text-3xl sm:text-5xl font-extrabold text-gray-900 leading-tight">
+                {{ post.title }}
+            </h1>
+
+            <!-- Ringkasan Estetis -->
+            <div class="bg-amber-50/60 border-l-4 border-amber-500 p-6 rounded-r-2xl text-gray-700 text-base sm:text-lg italic leading-relaxed">
+                <p>{{ post.summary }}</p>
+            </div>
+
+            <!-- Isi Artikel Lengkap -->
+            <div class="prose max-w-none text-gray-600 space-y-6 text-lg leading-relaxed">
+                {{ post.content|linebreaks }}
+            </div>
+
+            <!-- Kotak Aksi Afiliasi Lokal (Shopee/Tokopedia) -->
+            <div class="mt-12 pt-8 border-t border-gray-100 bg-gradient-to-r from-gray-900 to-amber-950 p-8 rounded-2xl text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
+                <div>
+                    <span class="text-xs text-amber-400 font-semibold uppercase tracking-wider block mb-1">Perkiraan Harga</span>
+                    <span class="text-3xl font-black text-white">{{ post.price }}</span>
+                </div>
+                <a href="{{ post.affiliate_url }}" target="_blank" rel="nofollow noopener" class="w-full sm:w-auto text-center bg-amber-500 hover:bg-amber-600 text-white font-bold py-4 px-8 rounded-xl shadow-lg shadow-amber-500/30 transition-transform transform hover:-translate-y-0.5">
+                    🛍️ Cek Produk di Shopee / Tokopedia
+                </a>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-gray-100 py-12 text-center text-xs text-gray-400">
+        <p>*Disclosure: Xtrashop berpartisipasi dalam program afiliasi e-commerce lokal.</p>
+        <p class="mt-2">© 2026 Xtrashop. Hak Cipta Dilindungi.</p>
+    </footer>
+</body>
+</html>
