@@ -14,11 +14,11 @@ class BlogPost(models.Model):
         return self.title
 
 class Product(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, blank=True, null=True) # <-- Tambahkan blank=True, null=True
     price = models.CharField(max_length=100)
     affiliate_link = models.URLField(max_length=500)
     description = models.TextField()
-    image_url = models.URLField(max_length=500, blank=True, null=True)  # <-- Kolom link gambar Shopee/Tokopedia
+    image_url = models.URLField(max_length=500, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
