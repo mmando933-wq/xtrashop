@@ -14,7 +14,7 @@ class BlogPost(models.Model):
         return self.title
 
 class Product(models.Model):
-    name = models.CharField(max_length=255, blank=True, null=True) # <-- Tambahkan blank=True, null=True
+    name = models.CharField(max_length=255, blank=True, null=True)
     price = models.CharField(max_length=100)
     affiliate_link = models.URLField(max_length=500)
     description = models.TextField()
@@ -22,4 +22,5 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.name
+        # Memastikan selalu mengembalikan string meskipun name kosong/null
+        return self.name if self.name else f"Product ID {self.id}"
