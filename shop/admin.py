@@ -1,12 +1,13 @@
 from django.contrib import admin
-from .models import Product, BlogPost
+from .models import BlogPost, Product
 
-# Mendaftarkan Product
+@admin.register(BlogPost)
+class BlogPostAdmin(admin.ModelAdmin):
+    list_display = ('title', 'category_name', 'created_at')
+    prepopulated_fields = {'slug': ('title',)}
+    search_fields = ('title', 'summary')
+
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('title', 'price', 'created_at')
-
-# Mendaftarkan BlogPost agar muncul di admin
-@admin.register(BlogPost)
-class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price', 'created_at') # Sesuaikan dengan field Product
+    list_display = ('name', 'price', 'created_at')  # Menggunakan 'name' khusus untuk Product
+    search_fields = ('name', 'description')
