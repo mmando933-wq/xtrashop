@@ -1,13 +1,13 @@
 from django.shortcuts import render, get_object_or_404
-from .models import BlogPost, Product  # <-- Pastikan Product ikut di-import di sini
+from .models import BlogPost, Product
 
 def home_view(request):
-    latest_posts = BlogPost.objects.all().order_by('-created_at')[:3] # Mengambil 3 blog terbaru
-    products = Product.objects.all().order_by('-created_at')          # <-- Tambahan: Mengambil semua produk
+    latest_posts = BlogPost.objects.all().order_by('-created_at')[:3]
+    products = Product.objects.all().order_by('-created_at')          # Mengambil data produk
     
     context = {
         'latest_posts': latest_posts,
-        'products': products,                                         # <-- Tambahan: Dikirim ke halaman HTML
+        'products': products,                                         # Dikirim ke template home.html
     }
     return render(request, 'shop/home.html', context)
 
