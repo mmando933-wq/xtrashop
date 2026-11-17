@@ -8,5 +8,5 @@ class ProductAdmin(admin.ModelAdmin):
 
 # Mendaftarkan BlogPost agar muncul di admin
 @admin.register(BlogPost)
-class BlogPostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'created_at')
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ('name', 'price', 'created_at') # Sesuaikan dengan field Product
