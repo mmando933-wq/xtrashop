@@ -1,6 +1,6 @@
 from django.db import models
 
-class BlogPost(models.Model):
+claclass BlogPost(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
     category_name = models.CharField(max_length=100)
@@ -8,6 +8,7 @@ class BlogPost(models.Model):
     content = models.TextField()
     image_url = models.URLField(max_length=500, blank=True, null=True)
     price = models.CharField(max_length=100, blank=True, null=True)
+    affiliate_link = models.URLField(max_length=500, blank=True, null=True)  # <-- Tambahkan baris ini
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
