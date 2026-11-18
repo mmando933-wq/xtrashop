@@ -1,6 +1,6 @@
 from django.db import models
 
-claclass BlogPost(models.Model):
+class BlogPost(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
     category_name = models.CharField(max_length=100)
@@ -8,7 +8,7 @@ claclass BlogPost(models.Model):
     content = models.TextField()
     image_url = models.URLField(max_length=500, blank=True, null=True)
     price = models.CharField(max_length=100, blank=True, null=True)
-    affiliate_link = models.URLField(max_length=500, blank=True, null=True)  # <-- Tambahkan baris ini
+    affiliate_link = models.URLField(max_length=500, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -23,5 +23,4 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        # Memastikan selalu mengembalikan string meskipun name kosong/null
         return self.name if self.name else f"Product ID {self.id}"
