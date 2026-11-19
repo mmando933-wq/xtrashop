@@ -10,3 +10,5 @@ tzdata==2026.6
 urllib3==2.8.0
 gunicorn
 whitenoise
+dj-database-url
+psycopg[binary]
