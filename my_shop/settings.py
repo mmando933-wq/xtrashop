@@ -46,7 +46,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "config.urls"  # Ganti 'config' jika nama folder project utama Anda berbeda
+ROOT_URLCONF = "xtrashop.urls"
 
 TEMPLATES = [
     {
@@ -64,7 +64,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "config.wsgi.application"  # Ganti 'config' jika nama folder project utama Anda berbeda
+WSGI_APPLICATION = "xtrashop.wsgi.application"
 
 # Database: PostgreSQL (Neon via DATABASE_URL) dengan fallback aman ke SQLite
 db_config = dj_database_url.config(
@@ -99,7 +99,7 @@ STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+DEFAULT_AUTO_FIELD = "django.db.BigAutoField"
 
 
 # Auto-create superuser sekali jika belum ada (berguna di Render Free tanpa Shell)
