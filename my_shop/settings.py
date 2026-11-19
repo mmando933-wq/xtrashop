@@ -1,8 +1,6 @@
 import os
 from pathlib import Path
 import dj_database_url
-from django.contrib.auth import get_user_model
-from django.db.utils import OperationalError, ProgrammingError
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -100,24 +98,3 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-
-# Auto-create superuser sekali jika belum ada (berguna di Render Free tanpa Shell)
-def ensure_admin_user():
-    username = os.environ.get("DJANGO_SUPERUSER_USERNAME")
-    email = os.environ.get("DJANGO_SUPERUSER_EMAIL", "admin@example.com")
-    password = os.environ.get("DJANGO_SUPERUSER_PASSWORD")
-    if username and password:
-        User = get_user_model()
-        try:
-            if not User.objects.filter(username=username).exists():
-                User.objects.create_superuser(
-                    username=username,
-                    email=email,
-                    password=password,
-                )
-        except (OperationalError, ProgrammingError):
-            pass
-
-
-ensure_admin_user()
