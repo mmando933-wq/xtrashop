@@ -1,0 +1,15 @@
+[
+  {
+    "model": "shop.product",
+    "pk": 101,
+    "fields": {
+      "name": "Tumbler 900ml Tahan Panas & Dingin 12 Jam",
+      "price": "Rp 63.990",
+      "affiliate_link": "https://s.shopee.co.id/CONTOH_LINK_1",
+      "description": "Tumbler kapasitas besar 900ml untuk aktivitas kerja, olahraga, dan harian.",
+      "image_url": "https://down-aka-id.img.susercontent.com/id-11134207-822wu-mpel5ff0zg2567.webp",
+      "is_featured": true,
+      "created_at": "2026-11-23T09:00:00Z"
+    }
+  }
+]
