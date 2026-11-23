@@ -4,12 +4,22 @@ from .models import BlogPost, Product
 
 def home_view(request):
     products = Product.objects.order_by("-created_at")
-    featured_product = (
+
+    featured_with_img = (
+        products.filter(is_featured=True)
+        .exclude(image_url__isnull=True)
+        .exclude(image_url="")
+        .first()
+    )
+    featured_any = products.filter(is_featured=True).first()
+    fallback_with_img = (
         products.exclude(image_url__isnull=True)
         .exclude(image_url="")
         .first()
-        or products.first()
     )
+
+    featured_product = featured_with_img or featured_any or fallback_with_img or products.first()
+
     return render(
         request,
         "shop/home.html",
