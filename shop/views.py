@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render
-from .models import BlogPost, Product
+from .models import BlogPost, Product, SponsorBanner
 
 
 def home_view(request):
@@ -19,6 +19,7 @@ def home_view(request):
     )
 
     featured_product = featured_with_img or featured_any or fallback_with_img or products.first()
+    sponsor_banner = SponsorBanner.objects.filter(is_active=True).order_by("-created_at").first()
 
     return render(
         request,
@@ -26,6 +27,7 @@ def home_view(request):
         {
             "products": products,
             "featured_product": featured_product,
+            "sponsor_banner": sponsor_banner,
         },
     )
 

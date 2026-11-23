@@ -178,6 +178,40 @@
     </script>
     {% endif %}
 <!-- Banner Sponsor -->
+{% if sponsor_banner %}
+<section class="mb-8">
+    <div class="bg-amber-50/90 border border-amber-200 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
+        <div class="flex items-center gap-4 min-w-0 w-full sm:w-auto">
+            {% if sponsor_banner.image_url %}
+            <img src="{{ sponsor_banner.image_url }}"
+                 alt="{{ sponsor_banner.title }}"
+                 onerror="this.style.display='none';"
+                 class="w-16 h-16 rounded-xl object-cover bg-white border border-amber-100 shrink-0">
+            {% endif %}
+            <div class="min-w-0">
+                <span class="inline-block text-[10px] font-bold uppercase tracking-wider text-amber-800 bg-amber-200/80 px-2.5 py-0.5 rounded-full">
+                    Sponsor
+                </span>
+                <h2 class="text-base sm:text-lg font-bold text-stone-900 mt-1 truncate">
+                    {{ sponsor_banner.title }}
+                </h2>
+                {% if sponsor_banner.subtitle %}
+                <p class="text-xs sm:text-sm text-stone-600 line-clamp-2 mt-0.5">
+                    {{ sponsor_banner.subtitle }}
+                </p>
+                {% endif %}
+            </div>
+        </div>
+
+        <a href="{{ sponsor_banner.target_url }}"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="w-full sm:w-auto inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold transition shrink-0">
+            {{ sponsor_banner.button_text|default:"Kunjungi Sponsor" }} &rarr;
+        </a>
+    </div>
+</section>
+{% endif %}
 <section class="mb-8">
     <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div class="flex items-center gap-4 min-w-0">
