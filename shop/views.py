@@ -1,5 +1,17 @@
+from pathlib import Path
+from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404, render
 from .models import BlogPost, Product, SponsorBanner
+
+
+def google_site_verification(request):
+    file_path = Path(__file__).resolve().parent / "googled004eef4fc688389.html"
+    if not file_path.exists():
+        raise Http404("Verification file not found")
+    return HttpResponse(
+        file_path.read_text(encoding="utf-8"),
+        content_type="text/html; charset=utf-8",
+    )
 
 
 def home_view(request):
